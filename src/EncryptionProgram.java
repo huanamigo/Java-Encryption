@@ -13,8 +13,8 @@ public class EncryptionProgram {
     EncryptionProgram() {
         scanner = new Scanner(System.in);
         random = new Random();
-        list = new ArrayList();
-        shuffledList = new ArrayList();
+        list = new ArrayList<>();
+        shuffledList = new ArrayList<>();
         character = ' ';
 
 
@@ -42,10 +42,32 @@ public class EncryptionProgram {
 
     private void newKey() {
 
+        character = ' ';
+        list.clear();
+        shuffledList.clear();
+
+        for (int i = 32; i < 127; i++){
+            list.add(Character.valueOf(character));
+            character++;
+        }
+
+        shuffledList = new ArrayList<>(list);
+        Collections.shuffle(shuffledList);
+        System.out.println("New key has been generated");
+
     }
 
     private void getKey() {
 
+        System.out.println("Key: ");
+        for (Character x : list){
+            System.out.print(x);
+        }
+        System.out.println();
+        for (Character x : shuffledList){
+            System.out.print(x);
+        }
+        System.out.println();
     }
 
     private void encrypt() {

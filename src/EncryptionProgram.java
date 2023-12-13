@@ -8,7 +8,6 @@ public class EncryptionProgram {
     private char character;
     private String line;
     private char[] letters;
-    private char[] secretLetters;
 
     EncryptionProgram() {
         scanner = new Scanner(System.in);
@@ -72,13 +71,54 @@ public class EncryptionProgram {
 
     private void encrypt() {
 
+        System.out.println("Enter a message you want to encrypt: ");
+        String message = scanner.nextLine();
+
+        letters = message.toCharArray();
+
+        for(int i = 0; i<letters.length; i++){
+            for(int j = 0; j<list.size(); j++){
+                if(letters[i] == list.get(j)){
+                    letters[i] = shuffledList.get(j);
+                    break;
+                }
+            }
+        }
+        System.out.println("Encrypted message:");
+        for(char x : letters){
+            System.out.print(x);
+        }
+        System.out.println();
+
     }
 
     private void decrypt() {
+
+        System.out.println("Enter a message you want to decrypt: ");
+        String message = scanner.nextLine();
+
+        letters = message.toCharArray();
+
+        for(int i = 0; i<letters.length; i++){
+            for(int j = 0; j<shuffledList.size(); j++){
+                if(letters[i] == shuffledList.get(j)){
+                    letters[i] = list.get(j);
+                    break;
+                }
+            }
+        }
+        System.out.println("Decrypted message:");
+        for(char x : letters){
+            System.out.print(x);
+        }
+        System.out.println();
+
 
     }
 
     private void quit() {
 
+        System.out.println("Thanks mate");
+        System.exit(0);
     }
 }
